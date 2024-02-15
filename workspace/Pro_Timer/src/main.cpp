@@ -1,5 +1,6 @@
 
 #include "main.h"
+#include <LiquidCrystal.h>
 
 static void protimer_event_dispatcher(protimer_t *const mobj, event_t const *const e);
 static uint8_t process_button_pad_value(uint8_t btn_pad_value);
@@ -26,4 +27,24 @@ void setup() {
 void loop() {
   // put your main code here, to run repeatedly:
   Serial.println("Hello World");
+}
+
+static void display_init(void)
+{
+  begin(16,2);
+  clear();
+  lcd_move_cursor_L_to_R();
+  lcd_set_cursor(0,0);
+  lcd_no_auto_scroll();
+  lcd_cursor_off();
+}
+
+static void protimer_event_dispatcher(protimer_t *const mobj,event_t const *const e)
+{
+
+}
+
+static uint8_t process_button_pad_value(uint8_t btn_pad_value)
+{
+
 }

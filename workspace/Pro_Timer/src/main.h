@@ -10,13 +10,13 @@
 #define PIN_BUZZER  12
 
 //lcd connections
-#define PIN_LCD_RS  5
-#define PIN_LCD_RW  6
-#define PIN_LCD_EN  7
-#define PIN_LCD_D4  8
-#define PIN_LCD_D5  9
-#define PIN_LCD_D6  10
-#define PIN_LCD_D7  11
+#define PIN_LCD_RS  8
+//#define PIN_LCD_RW  6
+#define PIN_LCD_EN  9
+#define PIN_LCD_D4  4
+#define PIN_LCD_D5  5
+#define PIN_LCD_D6  6
+#define PIN_LCD_D7  7
 
 #define BTN_PAD_VALUE_INC_TIME  4
 #define BTN_PAD_VALUE_DEC_TIME  2
