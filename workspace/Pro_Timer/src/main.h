@@ -1,34 +1,11 @@
-#if !defined(MAIN_H)
+#ifndef MAIN_H
 #define MAIN_H
 
 #include <Arduino.h>
+#include <LiquidCrystal.h>
 
-
-#define PIN_BUTTON1 2
-#define PIN_BUTTON2 3
-#define PIN_BUTTON3 4
-#define PIN_BUZZER  12
-
-//lcd connections
-#define PIN_LCD_RS  8
-//#define PIN_LCD_RW  6
-#define PIN_LCD_EN  9
-#define PIN_LCD_D4  4
-#define PIN_LCD_D5  5
-#define PIN_LCD_D6  6
-#define PIN_LCD_D7  7
-
-#define BTN_PAD_VALUE_INC_TIME  4
-#define BTN_PAD_VALUE_DEC_TIME  2
-#define BTN_PAD_VALUE_ABRT      6
-#define BTN_PAD_VALUE_SP        1
-
-typedef enum{
-    NOT_PRESSED,
-    BOUNCE,
-    PRESSED
-}button_state_t;
-
+const int rs = 8, en = 9, d4 = 4, d5 = 5, d6 = 6, d7 = 7;
+LiquidCrystal lcd(rs, en, d4, d5, d6, d7);
 
 /* Signals of the application*/
 typedef enum{
@@ -85,6 +62,4 @@ typedef enum{
 void protimer_init(protimer_t *mobj);
 event_status_t protimer_state_machine(protimer_t *const mobj, event_t const *const e);
 
-#endif // MAIN_H
-
-
+#endif

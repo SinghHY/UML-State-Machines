@@ -1,38 +1,39 @@
 #include "main.h"
-#include "lcd.h"
 
-static event_status_t protimer_state_handler_IDLE(protimer_t *const , event_t const *const);
-static event_status_t protimer_state_handler_TIME_SET(protimer_t *const , event_t const *const);
-static event_status_t protimer_state_handler_COUNTDOWN(protimer_t *const mobj, event_t const *const);
-static event_status_t protimer_state_handler_PAUSE(protimer_t *const , event_t const *const);
-static event_status_t protimer_state_handler_STAT(protimer_t *const , event_t const *const);
 
-static void display_time(uint32_t);
-static void display_message(String ,uint8_t , uint8_t);
-static void display_clear(void);
+//prototypes of helper functions 
 static void do_beep(void);
+static void display_clear(void);
+static void display_message(String s,uint8_t c , uint8_t r);
+static void display_time(uint32_t time);
+
+//prototypes of state handlers 
+static event_status_t protimer_state_handler_IDLE(protimer_t  *const mobj, event_t const *const e);
+static event_status_t protimer_state_handler_TIME_SET(protimer_t  *const mobj, event_t const *const e);
+static event_status_t protimer_state_handler_COUNTDOWN(protimer_t  *const mobj, event_t const *const e);
+static event_status_t protimer_state_handler_PAUSE(protimer_t  *const mobj, event_t const *const e);
+static event_status_t protimer_state_handler_STAT(protimer_t  *const mobj, event_t const *const e);
 
 void protimer_init(protimer_t *mobj){
     event_t ee;
     ee.sig = ENTRY;
-    mobj -> active_state = IDLE;
-    mobj -> pro_time = 0;
-    protimer_state_machine(mobj, &ee);
-
+    mobj->active_state = IDLE;
+    mobj->pro_time = 0;
+    protimer_state_machine(mobj,&ee);
 }
 
 event_status_t protimer_state_machine(protimer_t *const mobj, event_t const *const e){
-    switch (mobj -> active_state){
+    switch (mobj->active_state){
         case IDLE:
-            return protimer_state_handler_IDLE(mobj, e);
+            return protimer_state_handler_IDLE(mobj,e);
         case TIME_SET:
-            return protimer_state_handler_TIME_SET(mobj, e);
+            return protimer_state_handler_TIME_SET(mobj,e);
         case COUNTDOWN:
-            return protimer_state_handler_COUNTDOWN(mobj, e);
+            return protimer_state_handler_COUNTDOWN(mobj,e);
         case PAUSE:
-            return protimer_state_handler_PAUSE(mobj, e);
+            return protimer_state_handler_PAUSE(mobj,e);
         case STAT:
-            return protimer_state_handler_STAT(mobj, e);
+            return protimer_state_handler_STAT(mobj,e);
     }//END OF SWITCH
     return EVENT_IGNORED;
 }
@@ -76,7 +77,7 @@ static event_status_t protimer_state_handler_IDLE(protimer_t *const mobj, event_
 static event_status_t protimer_state_handler_TIME_SET(protimer_t *const mobj, event_t const *const e){
     switch(e->sig){
         case ENTRY:{
-            display_time(mobj->curr_time);
+            display_time(mobj -> curr_time);
             return EVENT_HANDLED;
         }
         case EXIT:{
@@ -216,19 +217,21 @@ static void display_time(uint32_t time){
   sprintf(buf,"%03d:%02d",m,s);
   
   time_msg = (String)buf;
-  lcd_set_cursor(5,0);
-  lcd_print_string(time_msg);
+  lcd.setCursor(5,0);
+  //lcd_print_string(time_msg);
+  lcd.print(time_msg);
 }
 
 static void display_message(String s,uint8_t c , uint8_t r){
-    lcd_set_cursor(c,r);
-    lcd_print_string(s);
+    lcd.setCursor(c,r);
+    //lcd_print_string(s);
+      lcd.print(s);
 }
 
 static void display_clear(void){
-    lcd_clear();
+    lcd.clear();
 }
 
 static void do_beep(void){
-    tone(PIN_BUZZER, 4000, 25);
+   // tone(PIN_BUZZER, 4000, 25);
 }
