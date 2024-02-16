@@ -2,6 +2,8 @@
 #include "main.h"
 
 
+const int rs = 8, en = 9, d4 = 4, d5 = 5, d6 = 6, d7 = 7;
+LiquidCrystal lcd_M(rs, en, d4, d5, d6, d7);
 
 static void display_init(void);
 /*Main application object */
@@ -25,9 +27,9 @@ void loop() {
 static void display_init(void)
 {
 
-  lcd.begin(16, 2);
-  lcd.clear();
-  lcd.print("Getting Started");
-  lcd.setCursor(0, 1);
-  lcd.print("UML State_Machine");
+  lcd_M.begin(16, 2);
+  lcd_M.clear();
+  lcd_M.print("Getting Started");
+  lcd_M.setCursor(0, 1);
+  lcd_M.print("UML State_Machine");
 }
