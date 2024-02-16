@@ -1,6 +1,8 @@
 
 #include "main.h"
 
+
+
 static void display_init(void);
 /*Main application object */
 
