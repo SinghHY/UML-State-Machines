@@ -4,6 +4,7 @@
 #include <Arduino.h>
 #include <LiquidCrystal.h>
 
+
 /* Signals of the application*/
 typedef enum{
     INC_TIME,

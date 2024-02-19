@@ -234,4 +234,5 @@ static void display_clear(void){
 
 static void do_beep(void){
     //tone(PIN_BUZZER, 4000, 25);
+    Serial.println("Beep -> Beep");
 }
