@@ -6,6 +6,18 @@
 		{
 			"name": "Pro_Timer",
 			"path": "Pro_Timer"
+		},
+		{
+			"name": "Test",
+			"path": "Test"
+		},
+		{
+			"name": "Protimer_SH",
+			"path": "Protimer_SH"
+		},
+		{
+			"name": "LCD_Test",
+			"path": "LCD_Test"
 		}
 	],
 	"settings": {}
