@@ -34,3 +34,7 @@ void display_message(String s,uint8_t c , uint8_t r){
 void display_clear(void){
     lcd.clear();
 }
+
+void Boom(void){
+  lcd.print("Boooom");
+}
